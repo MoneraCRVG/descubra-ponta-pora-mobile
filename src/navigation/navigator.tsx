@@ -15,22 +15,14 @@ const Navigator = () => {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size }) => {
-            let iconName: string;
-
-            if (route.name === 'Home') {
-              iconName = 'home-outline';
-            } else if (route.name === 'Settings') {
-              iconName = 'settings-outline';
-            }
-
-            return <Ionicons name={iconName!} size={size} color={color} />;
+            return <Ionicons name={'navigate'} size={size} color={color} />;
           },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="Settings" component={LoginScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
