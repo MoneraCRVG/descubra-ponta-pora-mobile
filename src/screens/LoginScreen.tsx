@@ -1,6 +1,5 @@
-// app/LoginScreen.tsx
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert, Image, TouchableOpacity } from 'react-native';
 import logoImg from '../../assets/LogoPP.png';
 
 export function LoginScreen() {
@@ -8,6 +7,11 @@ export function LoginScreen() {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
+    if (!username || !password) {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos.');
+      return;
+    }
+
     if (username === 'admin' && password === '1234') {
       Alert.alert('Sucesso', 'Login realizado com sucesso!');
     } else {
@@ -17,10 +21,10 @@ export function LoginScreen() {
 
   return (
     <View style={styles.container}>
+      <Image source={logoImg} style={styles.logo} />
 
-<Image source={logoImg} style={styles.logo} />
-
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Bem-Vindo</Text>
+      <Text style={styles.subtitle}>Fazer Login na sua conta</Text>
 
       <TextInput
         style={styles.input}
@@ -28,6 +32,9 @@ export function LoginScreen() {
         value={username}
         onChangeText={setUsername}
         autoCapitalize="none"
+        autoCorrect={false}
+        returnKeyType="next"
+        textContentType="username"
       />
 
       <TextInput
@@ -36,10 +43,17 @@ export function LoginScreen() {
         value={password}
         onChangeText={setPassword}
         secureTextEntry
+        textContentType="password"
       />
-
-      <Button title="Entrar" onPress={handleLogin} />
+      <Text>Criar conta</Text>
+      <Text>Esqueci minha senha</Text>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Entrar</Text>
+      </TouchableOpacity>
     </View>
+
+
+
   );
 }
 
@@ -52,14 +66,20 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: 200,
-    height: 150,
+    height: 100,
     resizeMode: 'contain',
     alignSelf: 'center',
-    marginBottom: 50,
-},
+    marginBottom: 60,
+  },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    fontSize: 20,
+    fontWeight:'normal' ,
+    marginBottom: 5,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 15,
+    fontWeight: 'normal',
     marginBottom: 24,
     textAlign: 'center',
   },
@@ -70,5 +90,20 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingHorizontal: 12,
     borderRadius: 8,
+  },
+  button: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    borderRadius: 15,
+    alignItems: 'center',
+    marginTop: 5,
+    width:200,
+    alignSelf: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+
   },
 });
