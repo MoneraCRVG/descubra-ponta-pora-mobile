@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingHorizontal: 12,
     borderRadius: 8,
+    
   },
   button: {
     backgroundColor: '#007BFF',
@@ -104,6 +105,5 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
-
   },
 });
